@@ -7,7 +7,7 @@ WORKDIR /src
 
 # Building as described at https://docs.gitlab.com/runner/development/
 # Change this env var to a desired version tag, or set to "master" (YMMV)
-ENV GITLAB_VERSION=v16.11.0
+ENV GITLAB_VERSION=v16.6
 RUN    go install gitlab.com/gitlab-org/gitlab-runner@${GITLAB_VERSION}
 
 # Grab docker-gc
