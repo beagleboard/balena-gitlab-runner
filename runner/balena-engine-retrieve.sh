@@ -32,7 +32,7 @@ wget --tries=3 --no-verbose "${RELEASE_URL}/${VERSION}/${RELEASE_FILENAME}"
 
 mkdir -p balena-engine
 cd balena-engine
-tar xzvf "${RELEASE_FILENAME}"
+tar xzvf ../"${RELEASE_FILENAME}"
 cd ..
 echo "Copying balena-engine to the path"
 mv balena-engine/* /usr/bin
