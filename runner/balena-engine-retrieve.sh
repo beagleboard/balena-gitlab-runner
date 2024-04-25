@@ -30,7 +30,10 @@ esac
 RELEASE_FILENAME="balena-engine-${VERSION}-${ARCH}.tar.gz"
 wget --tries=3 --no-verbose "${RELEASE_URL}/${VERSION}/${RELEASE_FILENAME}"
 
+mkdir -p balena-engine
+cd balena-engine
 tar xzvf "${RELEASE_FILENAME}"
+cd ..
 echo "Copying balena-engine to the path"
 mv balena-engine/* /usr/bin
 rm -rf balena-engine
