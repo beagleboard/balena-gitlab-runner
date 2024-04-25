@@ -31,7 +31,7 @@ FROM debian:sid
 
 WORKDIR /usr/src/app
 
-RUN install_packages cron psmisc
+RUN apt update && apt install -y cron psmisc
 
 #COPY --from=build /usr/bin/gitlab-runner /usr/bin/gitlab-runner
 COPY --from=build /root/go/bin/gitlab-runner /usr/bin/gitlab-runner
