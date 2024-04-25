@@ -7,13 +7,8 @@ WORKDIR /src
 
 # Building as described at https://docs.gitlab.com/runner/development/
 # Change this env var to a desired version tag, or set to "master" (YMMV)
-ENV GITLAB_VERSION=v11.11.0
-RUN    go get -v gitlab.com/gitlab-org/gitlab-runner \
-    && cd "${GOPATH}/src/gitlab.com/gitlab-org/gitlab-runner/" \
-    && git checkout -b build "${GITLAB_VERSION}" \
-    && make deps \
-    && make build_simple \
-    && install -m755 /go/src/gitlab.com/gitlab-org/gitlab-runner/out/binaries/gitlab-runner /usr/bin/gitlab-runner
+ENV GITLAB_VERSION=v16.11.0
+RUN    go install gitlab.com/gitlab-org/gitlab-runner@${GITLAB_VERSION}
 
 # Grab docker-gc
 ENV DOCKER_GC_VERSION=131a786886f571b656e0e4bdda967b7abc1fa7d1
@@ -22,14 +17,14 @@ RUN    git clone https://github.com/spotify/docker-gc.git \
     && git checkout -b build "${DOCKER_GC_VERSION}"
 
 # Grab balena-engine
-ENV BALENA_VERSION=v17.12.0
+ENV BALENA_VERSION=v20.10.43
 COPY balena-engine-retrieve.sh ./
 RUN ./balena-engine-retrieve.sh "${BALENA_VERSION}" "%%BALENA_ARCH%%"
 
 #####################
 # Runtime environment
 #####################
-FROM balenalib/%%BALENA_MACHINE_NAME%%-debian:stretch-run
+FROM balenalib/%%BALENA_MACHINE_NAME%%-debian:bullseye-run
 
 WORKDIR /usr/src/app
 
