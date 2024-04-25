@@ -11,7 +11,7 @@ case $ARCH in
     echo "Arch switched to ${ARCH}"
     ;;
   armv7hf)
-    ARCH="armv7"
+    ARCH="armv7hf"
     echo "Arch switched to ${ARCH}"
     ;;
   i386-nlp)
