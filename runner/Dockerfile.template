@@ -9,7 +9,7 @@ WORKDIR /src
 # NOT building as described at https://docs.gitlab.com/runner/development/
 # Change this env var to a desired version tag, or set to "master" (YMMV)
 ENV GITLAB_VERSION=main
-RUN    apt update && apt install -y golang-1.22 build-essential git docker.io ca-certificates
+RUN    apt update && apt install -y golang-1.22 build-essential git docker.io ca-certificates wget tar
 RUN    /usr/lib/go-1.22/bin/go install openbeagle.org/jkridner/gitlab-runner@${GITLAB_VERSION}
 
 # Grab docker-gc
